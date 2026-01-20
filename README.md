@@ -1,7 +1,6 @@
 <!-- ⚡️ Futuristic GitHub README - Revamped from Scratch -->
 
 <div align="center">
-  <img src="https://github.com/AbhishekBajpai-AB/AbhishekBajpai-AB/blob/fa1544061536af53bb35d2cbc47aff04755d2e89/Tiger.jpg?raw=true" width="222" alt="Avatar" />
   <h1 style="font-family:Segoe UI, sans-serif; color:#5ce1e6;">Abhishek Bajpai</h1>
   <p><em>Software Engineer, Machine Learning Engineer, Full Stack & AI Developer | Tech Explorer @ PSIT Kanpur</em></p>
   <p><a href="mailto:ab7759081@gmail.com">📩 ab7759081@gmail.com</a></p>
