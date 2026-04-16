@@ -5,8 +5,6 @@
   <p><em>Software Engineer, Machine Learning Engineer, Full Stack & AI Developer | Tech Explorer @ PSIT Kanpur</em></p>
   <p><a href="mailto:ab7759081@gmail.com">📩 ab7759081@gmail.com</a></p>
   <p>
-    <a href="https://leetcode.com/u/__abhishekbajpai__/" target="_blank"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=flat&logo=leetcode&logoColor=white" /></a> |
-    <a href="https://www.hackerrank.com/profile/2201640130003_IT" target="_blank"><img src="https://img.shields.io/badge/HackerRank-2EC866?style=flat&logo=hackerrank&logoColor=white" /></a> |
     <a href="https://www.linkedin.com/in/abhishek-bajpai-engineer/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white" /></a>
   </p>
 </div>
