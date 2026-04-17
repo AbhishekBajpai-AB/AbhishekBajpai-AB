@@ -56,12 +56,6 @@
 
 ---
 
-## 🏆 Trophies
-
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=Akshat394&theme=gruvbox&row=1&column=7" />
-</p>
-
 ## 🌐 Let's Connect
 
 <p align="center">
