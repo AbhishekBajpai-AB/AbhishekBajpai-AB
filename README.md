@@ -2,7 +2,7 @@
 
 <div align="center">
   <h1 style="font-family:Segoe UI, sans-serif; color:#5ce1e6;">Abhishek Bajpai</h1>
-  <p><em>Software Engineer, Machine Learning Engineer, Full Stack & AI Developer | Tech Explorer @ PSIT Kanpur</em></p>
+  <p><em>Software Engineer | Great Developers Info Tech Pvt Ltd</em></p>
   <p><a href="mailto:ab7759081@gmail.com">📩 ab7759081@gmail.com</a></p>
   <p>
     <a href="https://www.linkedin.com/in/abhishek-bajpai-engineer/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white" /></a>
