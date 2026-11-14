@@ -32,15 +32,6 @@
 
 ---
 
-## 📊 GitHub Overview
-
-<p align="center">
-  <img height="180" src="./profile/overview.svg" alt="GitHub contributions, commits, and public repositories" />
-  <img height="180" src="./profile/top-langs.svg" alt="Most used programming languages" />
-</p>
-
----
-
 ## 🗓️ Milestone Timeline
 
 ```yaml
@@ -61,6 +52,15 @@
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=python,js,ts,java,c,cpp,react,nodejs,flask,mongodb,git,docker,tensorflow,hadoop,kafka,vscode,pycharm,androidstudio,nginx,html,css,github,redis,go,azure,graphql,php&theme=light&perline=14" />
+</p>
+
+---
+
+## 📊 GitHub Overview
+
+<p align="center">
+  <img height="180" src="./profile/overview.svg" alt="GitHub contributions and public repositories" />
+  <img height="180" src="./profile/top-langs.svg" alt="Most used programming languages" />
 </p>
 
 ---
