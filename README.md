@@ -32,6 +32,15 @@
 
 ---
 
+## 📊 GitHub Stats
+
+<p align="center">
+  <img height="180" src="https://github-readme-stats.vercel.app/api?username=AbhishekBajpai-AB&show_icons=true&theme=tokyonight&hide_border=true" alt="Abhishek's GitHub stats" />
+  <img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=AbhishekBajpai-AB&layout=compact&theme=tokyonight&hide_border=true" alt="Most used programming languages" />
+</p>
+
+---
+
 ## 🗓️ Milestone Timeline
 
 ```yaml
