@@ -32,10 +32,10 @@
 
 ---
 
-## 📊 GitHub Stats
+## 📊 GitHub Overview
 
 <p align="center">
-  <img height="180" src="./profile/stats.svg" alt="Abhishek's GitHub stats" />
+  <img height="180" src="./profile/overview.svg" alt="GitHub contributions, commits, and public repositories" />
   <img height="180" src="./profile/top-langs.svg" alt="Most used programming languages" />
 </p>
 
