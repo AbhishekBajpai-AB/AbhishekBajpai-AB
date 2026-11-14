@@ -1,79 +1,77 @@
 import { mkdir, writeFile } from "node:fs/promises";
 
-const token = process.env.GITHUB_TOKEN;
 const username = process.env.GITHUB_USERNAME;
-
-if (!token || !username) {
-  throw new Error("GITHUB_TOKEN and GITHUB_USERNAME are required.");
+if (!username) {
+  throw new Error("GITHUB_USERNAME is required.");
 }
 
-const to = new Date();
-const from = new Date(to);
-from.setUTCFullYear(from.getUTCFullYear() - 1);
+const headers = {
+  "User-Agent": "github-profile-overview",
+  "Accept-Language": "en-US,en;q=0.9",
+};
 
-const query = `
-  query ProfileOverview($login: String!, $from: DateTime!, $to: DateTime!) {
-    user(login: $login) {
-      contributionsCollection(from: $from, to: $to) {
-        totalContributions
-        totalCommitContributions
-      }
-      repositories(
-        ownerAffiliations: [OWNER]
-        privacy: PUBLIC
-        isFork: false
-        first: 1
-      ) {
-        totalCount
-      }
-    }
-  }
-`;
-
-const response = await fetch("https://api.github.com/graphql", {
-  method: "POST",
-  headers: {
-    Authorization: `Bearer ${token}`,
-    "Content-Type": "application/json",
-    "User-Agent": "github-profile-overview",
-  },
-  body: JSON.stringify({
-    query,
-    variables: {
-      login: username,
-      from: from.toISOString(),
-      to: to.toISOString(),
-    },
-  }),
-});
-
-const result = await response.json();
-if (!response.ok || result.errors?.length) {
+const contributionResponse = await fetch(
+  `https://github.com/users/${encodeURIComponent(username)}/contributions`,
+  { headers },
+);
+if (!contributionResponse.ok) {
   throw new Error(
-    result.errors?.map((error) => error.message).join("; ") ||
-      `GitHub GraphQL request failed with HTTP ${response.status}`,
+    `GitHub contribution page returned HTTP ${contributionResponse.status}.`,
   );
 }
 
-const user = result.data?.user;
-if (!user) {
-  throw new Error(`GitHub user "${username}" was not found.`);
+const contributionHtml = await contributionResponse.text();
+const headingHtml = contributionHtml.match(
+  /<h2\b[^>]*id="js-contribution-activity-description"[^>]*>([\s\S]*?)<\/h2>/i,
+)?.[1];
+const headingText = headingHtml
+  ?.replace(/<[^>]+>/g, " ")
+  .replace(/&nbsp;/gi, " ")
+  .replace(/\s+/g, " ")
+  .trim();
+const contributionMatch = headingText?.match(
+  /([\d,]+)\s+contributions?\s+in\s+the\s+last\s+year/i,
+);
+if (!contributionMatch) {
+  throw new Error("Could not read the contribution total from GitHub's profile graph.");
+}
+
+const contributions = Number(contributionMatch[1].replaceAll(",", ""));
+let publicRepositories = 0;
+for (let page = 1; ; page += 1) {
+  const repositoriesResponse = await fetch(
+    `https://api.github.com/users/${encodeURIComponent(username)}/repos?type=owner&per_page=100&page=${page}`,
+    {
+      headers: {
+        ...headers,
+        Accept: "application/vnd.github+json",
+      },
+    },
+  );
+  if (!repositoriesResponse.ok) {
+    throw new Error(
+      `GitHub repositories API returned HTTP ${repositoriesResponse.status}.`,
+    );
+  }
+
+  const repositories = await repositoriesResponse.json();
+  if (!Array.isArray(repositories)) {
+    throw new Error("GitHub returned an unexpected repositories response.");
+  }
+
+  publicRepositories += repositories.filter((repository) => !repository.fork).length;
+  if (repositories.length < 100) break;
 }
 
 const metrics = [
   {
     label: "CONTRIBUTIONS",
-    value: user.contributionsCollection.totalContributions,
-    detail: "past 12 months",
-  },
-  {
-    label: "COMMITS",
-    value: user.contributionsCollection.totalCommitContributions,
+    value: contributions,
     detail: "past 12 months",
   },
   {
     label: "PUBLIC REPOSITORIES",
-    value: user.repositories.totalCount,
+    value: publicRepositories,
     detail: "owned, excluding forks",
   },
 ].filter((metric) => Number(metric.value) > 0);
@@ -121,4 +119,4 @@ const svg = `
 `;
 
 await mkdir("profile", { recursive: true });
-await writeFile("profile/overview.svg", svg.trimStart(), "utf8");
+await writeFile("profile/overview.svg", svg.replace(/^[ \t]+$/gm, "").trim(), "utf8");

@@ -28,7 +28,6 @@ jobs:
       - name: Generate profile overview card
         run: node scripts/generate-profile-overview.mjs
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USERNAME: ${{ github.repository_owner }}
 
       - name: Generate top languages card
